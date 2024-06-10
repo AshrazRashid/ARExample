@@ -14,12 +14,18 @@ android {
     defaultConfig {
         minSdkVersion 22
         targetSdkVersion 34
-        ndk {
-            abiFilters 'armeabi-v7a'
-        }
         versionCode 1
         versionName '1.0.2'
-        consumerProguardFiles 'proguard-unity.txt'
+    }
+
+    buildTypes {
+        release {
+            minifyEnabled false
+            proguardFiles getDefaultProguardFile('proguard-android-optimize.txt'), 'proguard-rules.pro'
+        }
+        debug {
+            // Debug-specific configurations
+        }
     }
 
     lintOptions {
@@ -27,7 +33,7 @@ android {
     }
 
     aaptOptions {
-        noCompress = ['.unity3d', '.ress', '.resource', '.obb', '.bundle', '.unityexp'] + unityStreamingAssets.tokenize(', ')
+        noCompress = ['.unity3d', '.ress', '.resource', '.obb', '.bundle', '.unityexp']
         ignoreAssetsPattern = "!.svn:!.git:!.ds_store:!*.scc:!CVS:!thumbs.db:!picasa.ini:!~*"
     }
 
@@ -37,8 +43,8 @@ android {
 }
 
 dependencies {
-    implementation fileTree(dir: 'libs', include: ['*.jar'])
+    implementation fileTree(dir: 'libs', include: ['*.jar', '*.aar'])
     implementation(name: 'unityandroidpermissions', ext:'aar')
-    implementation project(':xrmanifest.androidlib')
-    implementation project(':mobilenotifications.androidlib')
+    implementation project(':unityLibrary:xrmanifest.androidlib')
+    implementation project(':unityLibrary:mobilenotifications.androidlib')
 }
