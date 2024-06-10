@@ -10,6 +10,9 @@ buildscript {
     repositories {
         google()
         mavenCentral()
+        flatDir {
+            dirs 'libs'
+        }
     }
     dependencies {
         classpath("com.android.tools.build:gradle")
@@ -19,3 +22,6 @@ buildscript {
 }
 
 apply plugin: "com.facebook.react.rootproject"
+
+
+
