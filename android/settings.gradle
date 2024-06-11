@@ -1,17 +1,7 @@
-// File: android/settings.gradle
-
 rootProject.name = 'ARExample'
 apply from: file("../node_modules/@react-native-community/cli-platform-android/native_modules.gradle"); applyNativeModulesSettingsGradle(settings)
+
 include ':app'
 include ':react-native-unity-view'
-
-// Include the Unity library project
 include ':unityLibrary'
 project(':unityLibrary').projectDir = new File(rootProject.projectDir, '../unityLibrary')
-
-// Include nested projects within unityLibrary
-include ':unityLibrary:xrmanifest.androidlib'
-project(':unityLibrary:xrmanifest.androidlib').projectDir = new File(rootProject.projectDir, '../unityLibrary/xrmanifest.androidlib')
-
-include ':unityLibrary:mobilenotifications.androidlib'
-project(':unityLibrary:mobilenotifications.androidlib').projectDir = new File(rootProject.projectDir, '../unityLibrary/mobilenotifications.androidlib')
