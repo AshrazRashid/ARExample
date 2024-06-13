@@ -1,7 +1,11 @@
 rootProject.name = 'ARExample'
 apply from: file("../node_modules/@react-native-community/cli-platform-android/native_modules.gradle"); applyNativeModulesSettingsGradle(settings)
-
 include ':app'
-include ':react-native-unity-view'
+includeBuild('../node_modules/@react-native/gradle-plugin')
+
+include ':asmadsen_react-native-unity-view'
+
+
 include ':unityLibrary'
-project(':unityLibrary').projectDir = new File(rootProject.projectDir, '../unityLibrary')
+
+project(':unityLibrary').projectDir = new File(rootProject.projectDir, 'unityLibrary')

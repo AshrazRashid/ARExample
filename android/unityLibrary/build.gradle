@@ -1,4 +1,5 @@
 apply plugin: 'com.android.library'
+apply plugin: 'maven-publish'
 
 android {
     compileSdkVersion 34
@@ -30,12 +31,31 @@ android {
 repositories {
     google()
     mavenCentral()
-    flatDir {
-        dirs 'libs'
-    }
+    maven {
+            url = uri('local/maven/repo')
+        }
+   
 }
 
 dependencies {
-    implementation fileTree(dir: 'libs', include: ['*.jar'])
-    // Other dependencies if necessary
+    implementation fileTree(dir: 'libs', include: ['*.jar', '*.aar'])
+
+}
+
+
+// Add this block at the end
+publishing {
+    publications {
+        aar(MavenPublication) {
+            groupId = 'com.unitylibrary'
+            artifactId = 'unitylibrary'
+            version = '1.0'
+            artifact("$buildDir/outputs/aar/unityLibrary-debug.aar")
+        }
+    }
+    repositories {
+        maven {
+            url = uri('local/maven/repo') // Update with the correct path
+        }
+    }
 }

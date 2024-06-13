@@ -14,6 +14,9 @@ android {
         targetSdkVersion rootProject.ext.targetSdkVersion
         versionCode 1
         versionName "1.0"
+        ndk{
+        abiFilters 'armeabi-v7a','x86'
+    }
     }
     signingConfigs {
         debug {
@@ -29,7 +32,6 @@ android {
         }
         release {
             signingConfig signingConfigs.debug
-            minifyEnabled enableProguardInReleaseBuilds
             proguardFiles getDefaultProguardFile("proguard-android.txt"), "proguard-rules.pro"
         }
     }
@@ -38,14 +40,20 @@ android {
 repositories {
     google()
     mavenCentral()
-    flatDir {
-        dirs 'libs'
+    maven {
+        url = uri('unityLibrary/local/maven/repo')
     }
+   
+    
 }
 
 dependencies {
-    implementation("com.facebook.react:react-android")
+    implementation "com.facebook.react:react-native:+"
+   
     implementation project(':unityLibrary')
+
+
+ implementation fileTree(dir: project(':unityLibrary').getProjectDir().toString() + ('\\libs'), include: ['*.jar'])
 
     if (hermesEnabled.toBoolean()) {
         implementation("com.facebook.react:hermes-android")
