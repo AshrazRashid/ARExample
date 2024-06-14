@@ -1,3 +1,7 @@
 <resources>
     <string name="app_name">ARExample</string>
+    <string name="unity_player_string">Unity Player</string>
+    <string name="unity_loading_message">Loading Unity...</string>
+    <string name="game_view_content_description" translatable="false">Game view</string>
+
 </resources>
