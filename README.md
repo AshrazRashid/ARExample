@@ -1,3 +1,6 @@
+For the Additional configuration, you need to add the libs folder in the react-native-unity-view android folder and replace the build.gradle form project commit
+
+
 This is a new [**React Native**](https://reactnative.dev) project, bootstrapped using [`@react-native-community/cli`](https://github.com/react-native-community/cli).
 
 # Getting Started
