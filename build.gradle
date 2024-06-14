@@ -1,0 +1,53 @@
+apply plugin: 'com.android.library'
+
+android {
+    compileSdk 33
+
+
+    defaultConfig {
+        minSdkVersion 23
+        targetSdkVersion 33
+        versionCode 1
+        versionName "1.0"
+
+        consumerProguardFiles 'consumer-rules.pro'
+    }
+
+    buildTypes {
+        release {
+            minifyEnabled false
+            proguardFiles getDefaultProguardFile('proguard-android-optimize.txt'), 'proguard-rules.pro'
+        }
+    }
+}
+
+repositories {
+    mavenCentral()
+    google()
+    jcenter()
+    maven { url 'https://maven.google.com' }
+}
+
+dependencies {
+
+    // Unity library dependency
+    implementation project(':unityLibrary')
+    implementation fileTree(dir: "libs", include: ["*.jar"])
+    implementation files('libs/classes.jar')
+
+    // React Native dependencies
+    implementation 'com.facebook.react:react-native:+'
+}
+
+
+// React Native's auto-linking requires this (React Native 0.60 and above)
+def preBuildCommand = { project ->
+    File nodeModules = new File(rootProject.projectDir, 'node_modules')
+    if (nodeModules.exists()) {
+        project.exec {
+            workingDir nodeModules
+            commandLine 'node', 'node_modules/react-native/scripts/oss-podspecs/buildNativeModules.sh'
+        }
+    }
+}
+preBuild.dependsOn preBuildCommand
