@@ -1,11 +1,11 @@
-For the Additional configuration, you must add the libs folder in the react-native-unity-view android folder and replace the build.gradle form project commit c5a24e24498bcf6dd2ba224f944988096ba1cd35
+For the additional configuration, you'll need to add the libs folder in the react-native-unity-view android folder and replace the build.gradle form project commit c5a24e24498bcf6dd2ba224f944988096ba1cd35
 
 
 This is a new [**React Native**](https://reactnative.dev) project, bootstrapped using [`@react-native-community/cli`](https://github.com/react-native-community/cli).
 
 # Getting Started
 
->**Note**: Make sure you have completed the [React Native - Environment Setup](https://reactnative.dev/docs/environment-setup) instructions till "Creating a new application" step, before proceeding.
+>**Note**: Make sure you have completed the [React Native - Environment Setup](https://reactnative.dev/docs/environment-setup) instructions till the "Creating a new application" step, before proceeding.
 
 ## Step 1: Start the Metro Server
 
